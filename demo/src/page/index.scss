@@ -1,0 +1,12 @@
+.page {
+    background-color: #fff;
+    height: 100vh;
+    .content {
+        display: flex;
+        .left {
+            background-color: #fff;
+            padding: 20px;
+            min-width: 300px;
+        }
+    }
+}
