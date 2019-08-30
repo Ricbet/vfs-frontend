@@ -95,7 +95,9 @@ export class ZipVFSService implements IVfsable<Blob> {
     public async mount(devBlob: Blob): Promise<never> {
         const jszip = new JSZip();
         return new Promise(res => {
-            jszip.loadAsync(devBlob).then((data: JSZip) => {
+            jszip.loadAsync(devBlob, {
+                createFolders: true
+            }).then((data: JSZip) => {
                 this.setSourceJSZip(data);
                 this.inodeMap.set(
                     "/",

@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
 import UploadForm from "../component/upload-form";
-import { ZipVFSService, IInodeable } from "../../public/lib";
+import { ZipVFSService, Inode } from "../../public/lib";
 import TreeComp from "../component/tree";
 import { blobDownload } from "../util";
 
 import "./index.scss";
+import { TInode } from "../component/tree/model";
 
 const vfsService = new ZipVFSService();
 
 const Page = () => {
-    const [treeData, setTreeData] = useState<IInodeable[]>([]);
+    const [treeData, setTreeData] = useState<Inode[]>([]);
+    const [treeVfss, setTreeVfss] = useState<ZipVFSService>();
 
     const acceptUplodaChange = async (blob: Blob) => {
         vfsService.mount(blob).then(async () => {
             const treelist = await vfsService.ls("/");
             setTreeData(treelist || []);
+            setTreeVfss(vfsService)
         });
     };
 
@@ -31,7 +34,7 @@ const Page = () => {
                         <UploadForm onUploadChange={acceptUplodaChange} onExportZip={exportNewZip} />
                     </div>
                     <div className="right">
-                        <TreeComp data={treeData}></TreeComp>
+                        <TreeComp data={treeData as TInode[]} vfsService={treeVfss}></TreeComp>
                     </div>
                 </Layout.Content>
             </Layout>
