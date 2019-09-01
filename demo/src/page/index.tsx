@@ -7,23 +7,29 @@ import { blobDownload } from "../util";
 
 import "./index.scss";
 import { TInode } from "../component/tree/model";
+import Details from "../component/details";
 
 const vfsService = new ZipVFSService();
 
 const Page = () => {
     const [treeData, setTreeData] = useState<Inode[]>([]);
     const [treeVfss, setTreeVfss] = useState<ZipVFSService>();
+    const [currentFileDetails, setCurrentFileDetails] = useState<string>("");
 
     const acceptUplodaChange = async (blob: Blob) => {
         vfsService.mount(blob).then(async () => {
             const treelist = await vfsService.ls("/");
             setTreeData(treelist || []);
-            setTreeVfss(vfsService)
+            setTreeVfss(vfsService);
         });
     };
 
     const exportNewZip = (name: string) => {
         console.log(name);
+    };
+
+    const onCurrentFileContent = (content: string) => {
+        setCurrentFileDetails(content);
     };
 
     return (
@@ -34,7 +40,14 @@ const Page = () => {
                         <UploadForm onUploadChange={acceptUplodaChange} onExportZip={exportNewZip} />
                     </div>
                     <div className="right">
-                        <TreeComp data={treeData as TInode[]} vfsService={treeVfss}></TreeComp>
+                        <TreeComp
+                            data={treeData as TInode[]}
+                            vfsService={treeVfss}
+                            onLaunchFileDetails={onCurrentFileContent}
+                        ></TreeComp>
+                    </div>
+                    <div className="file-details">
+                        <Details content={currentFileDetails}></Details>
                     </div>
                 </Layout.Content>
             </Layout>

@@ -6,7 +6,11 @@
         .left {
             background-color: #fff;
             padding: 20px;
-            min-width: 300px;
+            min-width: 260px;
+        }
+        .file-details {
+            flex: 1;
+            max-width: calc(100% - 500px);
         }
     }
 }

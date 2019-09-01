@@ -11,10 +11,11 @@ const fileIcons = require("file-icons-js");
 interface PropsTreeComp {
     data: TInode[];
     vfsService?: ZipVFSService;
+    onLaunchFileDetails?: (d: string) => void;
 }
 
 const TreeComp = (props: PropsTreeComp): JSX.Element => {
-    const { data, vfsService } = props;
+    const { data, vfsService, onLaunchFileDetails } = props;
 
     const [inodeData, setInodeData] = useState<TInode[]>([]);
 
@@ -51,7 +52,10 @@ const TreeComp = (props: PropsTreeComp): JSX.Element => {
     };
 
     const checkFile = (f: TInode) => {
-        console.log(f, "f");
+        if (!vfsService || !onLaunchFileDetails) return;
+        vfsService.read(f.path).then(content => {
+            if (typeof content === "string") onLaunchFileDetails(content);
+        });
     };
 
     const renderTreeNodes = (data: TInode[]): JSX.Element[] => {
@@ -71,7 +75,7 @@ const TreeComp = (props: PropsTreeComp): JSX.Element => {
     };
 
     return (
-        <div className="tree-comp" style={{ overflow: "auto", height: "100%", maxWidth: "300px" }}>
+        <div className="tree-comp" style={{ overflow: "auto", height: "100%", maxWidth: "300px", minWidth: "240px" }}>
             {inodeData.length ? (
                 <DirectoryTree onSelect={selectNode}>{renderTreeNodes(inodeData)}</DirectoryTree>
             ) : null}
