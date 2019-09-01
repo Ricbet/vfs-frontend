@@ -4,13 +4,12 @@ import { RcFile } from "antd/lib/upload/interface";
 
 interface UploadFormProps {
     onUploadChange: (arg: Blob) => void;
-    onExportZip: (fileName: string) => void;
 }
 
 const UploadForm = (prop: UploadFormProps): JSX.Element => {
     const [fileName, setFileName] = useState("");
 
-    const { onUploadChange, onExportZip } = prop;
+    const { onUploadChange } = prop;
 
     const acceptUploadChange = (file: RcFile): boolean => {
         const { name } = file;
@@ -36,11 +35,11 @@ const UploadForm = (prop: UploadFormProps): JSX.Element => {
                         <p className="ant-upload-hint">仅支持 ZIP 压缩包</p>
                     </Upload.Dragger>
                 </Form.Item>
-                <Form.Item>
+                {/* <Form.Item>
                     <Button type="primary" style={{ width: "100%" }} onClick={() => onExportZip(fileName)}>
                         导出为新压缩包
                     </Button>
-                </Form.Item>
+                </Form.Item> */}
             </Form>
         </div>
     );
