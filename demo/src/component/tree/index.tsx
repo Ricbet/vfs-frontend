@@ -3,8 +3,10 @@ import { Tree } from "antd";
 import { TInode } from "./model";
 import { ZipVFSService } from "../../../public/lib";
 import { generateInode, handleSortFileList, findTreeData } from "./util";
+import "../../file-icons-js.css";
 
 const { TreeNode, DirectoryTree } = Tree;
+const fileIcons = require("file-icons-js");
 
 interface PropsTreeComp {
     data: TInode[];
@@ -43,7 +45,6 @@ const TreeComp = (props: PropsTreeComp): JSX.Element => {
         if (!vfsService) return;
         vfsService.ls(d.path).then(ls => {
             const llist = ls.map(l => generateInode(l as TInode));
-            console.log(llist, "llist");
             d.setChildren(handleSortFileList(llist));
             setInodeData([...inodeData]);
         });
@@ -56,7 +57,13 @@ const TreeComp = (props: PropsTreeComp): JSX.Element => {
     const renderTreeNodes = (data: TInode[]): JSX.Element[] => {
         return data.map(item => {
             return (
-                <TreeNode title={item.name} key={item.path} dataRef={item} isLeaf={!item.isDir}>
+                <TreeNode
+                    icon={item.isDir ? null : <i className={fileIcons.getClassWithColor(item.name) || "fa-file-o"}></i>}
+                    title={item.name}
+                    key={item.path}
+                    dataRef={item}
+                    isLeaf={!item.isDir}
+                >
                     {renderTreeNodes(item.children)}
                 </TreeNode>
             );
@@ -64,7 +71,7 @@ const TreeComp = (props: PropsTreeComp): JSX.Element => {
     };
 
     return (
-        <div className="tree-comp" style={{ overflowY: "auto", height: "100%" }}>
+        <div className="tree-comp" style={{ overflow: "auto", height: "100%", maxWidth: "300px" }}>
             {inodeData.length ? (
                 <DirectoryTree onSelect={selectNode}>{renderTreeNodes(inodeData)}</DirectoryTree>
             ) : null}
