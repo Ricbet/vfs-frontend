@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Typography, Input, Button } from "antd";
+import { Layout, Typography, Input, Button, Spin } from "antd";
 import UploadForm from "../component/upload-form";
 import { ZipVFSService, Inode } from "../../public/lib";
 import TreeComp from "../component/tree";
@@ -14,6 +14,7 @@ const Page = () => {
     const [treeData, setTreeData] = useState<Inode[]>([]);
     const [treeVfss, setTreeVfss] = useState<ZipVFSService>();
     const [blobUrl, setBlobUrl] = useState<string>("");
+    const [isLoad, setIsLoad] = useState<boolean>(false);
     const [currentFileDetails, setCurrentFileDetails] = useState<string>("");
 
     const acceptUplodaChange = async (blob: Blob) => {
@@ -29,6 +30,7 @@ const Page = () => {
     };
 
     const acquireBlobUrl = () => {
+        setIsLoad(true)
         fetch(blobUrl, {
             headers: { "content-type": "application/zip" },
         }).then(async responData => {
@@ -40,7 +42,9 @@ const Page = () => {
                 const data = await responData.blob();
                 acceptUplodaChange(data);
             }
-        });
+        }).finally(() => {
+            setIsLoad(false)
+        })
     };
 
     const renderFeatchUrlForm = (): JSX.Element => {
@@ -67,11 +71,13 @@ const Page = () => {
                         {renderFeatchUrlForm()}
                     </div>
                     <div className="right">
-                        <TreeComp
-                            data={treeData as TInode[]}
-                            vfsService={treeVfss}
-                            onLaunchFileDetails={onCurrentFileContent}
-                        ></TreeComp>
+                        <Spin spinning={isLoad} style={{marginTop: "20px"}}>
+                            <TreeComp
+                                data={treeData as TInode[]}
+                                vfsService={treeVfss}
+                                onLaunchFileDetails={onCurrentFileContent}
+                            ></TreeComp>
+                        </Spin>
                     </div>
                     <div className="file-details">
                         <Details content={currentFileDetails}></Details>
