@@ -1,28 +1,33 @@
 # vfs-frontend
 
-vfs-frontend 是一个纯前端实现的简易虚拟文件系统，只需传递带有 zip 属性的 blob 二进制数据即可在前端构建出一个虚拟文件系统，解析 blob 数据用的是 [JSZip](https://github.com/Stuk/jszip) 这个库
+VFS-frontend is a simple virtual file system implemented purely on the frontend, where a virtual file system is built by simply passing blob binary data with a zip attribute，The [JSZip](https://github.com/Stuk/jszip) library is used for parsing blob data
+
+English | [简体中文](README-zh_CN.md)
+
+# demo
+
+https://ricbet.github.io/vfs-frontend/
 
 
-# 如何使用
+# How to use
 
 ```typescript
 const vfsService = new ZipVFSService();
 
-// 仅接收 blob 数据
 vfsService.mount(blob).then(async () => {
     // do it
 });
 
 ```
-此时 vfsService 已经被挂载了, 例如
+Now, vfsService has been mounted, for example
 
 <img src="https://raw.githubusercontent.com/Ricbet/vfs-frontend/master/assets/vfs-mount.png" alt="mount" width=520 />
 
-根目录默认为 '/', 你可以使用 ls 方法查看某个目录下的所有文件， 例如
+The root directory defaults to '/', you can use the 'ls' method to view all files in a directory， for example
 
 ```typescript
 vfsService.ls('/').then((data: Inode[]) => {
-    // do ite
+    // do it
 })
 ```
 
@@ -66,8 +71,6 @@ interface IVfsable<T> {
 
 ```
 
-# demo
+# LICENSE
 
-https://ricbet.github.io/vfs-frontend/
-
-
+MIT
