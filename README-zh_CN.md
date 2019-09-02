@@ -2,6 +2,12 @@
 
 vfs-frontend 是一个纯前端实现的简易虚拟文件系统，只需传递带有 zip 属性的 blob 二进制数据即可在前端构建出一个虚拟文件系统，解析 blob 数据用的是 [JSZip](https://github.com/Stuk/jszip) 这个库
 
+[English](README.md) | 简体中文
+
+# demo
+
+https://ricbet.github.io/vfs-frontend/
+
 
 # 如何使用
 
@@ -65,10 +71,6 @@ interface IVfsable<T> {
 }
 
 ```
-
-# demo
-
-https://ricbet.github.io/vfs-frontend/
 
 # LICENSE
 
