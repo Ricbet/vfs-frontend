@@ -25,22 +25,22 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "e19892df121e7f85c61754c54bbb7951",
-    "url": "/static/media/devopicons.e19892df.woff2"
+    "url": "./static/media/devopicons.e19892df.woff2"
   },
   {
     "revision": "11d1a2390613abf202bfd2ebbd5c4500",
-    "url": "/static/media/file-icons.11d1a239.woff2"
+    "url": "./static/media/file-icons.11d1a239.woff2"
   },
   {
     "revision": "af7ae505a9eed503f8b8e6982036873e",
-    "url": "/static/media/fontawesome.af7ae505.woff2"
+    "url": "./static/media/fontawesome.af7ae505.woff2"
   },
   {
     "revision": "0a32a80243e05284a5d741c5dc093f31",
-    "url": "/static/media/mfixx.0a32a802.woff2"
+    "url": "./static/media/mfixx.0a32a802.woff2"
   },
   {
     "revision": "de59a97248b44599e6747a27a943f738",
-    "url": "/static/media/octicons.de59a972.woff2"
+    "url": "./static/media/octicons.de59a972.woff2"
   }
 ]);
