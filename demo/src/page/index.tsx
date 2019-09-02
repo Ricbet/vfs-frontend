@@ -22,6 +22,7 @@ const Page = () => {
             const treelist = await vfsService.ls("/");
             setTreeData(treelist || []);
             setTreeVfss(vfsService);
+            (window as any).vfsService = vfsService
         });
     };
 
