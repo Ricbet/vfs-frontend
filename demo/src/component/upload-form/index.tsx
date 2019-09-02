@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Button, Upload, Icon } from "antd";
+import React from "react";
+import { Form, Upload, Icon } from "antd";
 import { RcFile } from "antd/lib/upload/interface";
 
 interface UploadFormProps {
@@ -7,13 +7,9 @@ interface UploadFormProps {
 }
 
 const UploadForm = (prop: UploadFormProps): JSX.Element => {
-    const [fileName, setFileName] = useState("");
-
     const { onUploadChange } = prop;
 
     const acceptUploadChange = (file: RcFile): boolean => {
-        const { name } = file;
-        setFileName(name);
         onUploadChange(new Blob([file], { type: "text/plain" }));
         return false;
     };
