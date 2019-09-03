@@ -9,7 +9,7 @@ English | [简体中文](README-zh_CN.md)
 https://ricbet.github.io/vfs-frontend/
 
 
-# How to use
+# how to use
 
 ```typescript
 const vfsService = new ZipVFSService();
@@ -35,7 +35,7 @@ vfsService.ls('/').then((data: Inode[]) => {
 
 🌈enjoy😊🌈
 
-# API
+# api
 
 ```typescript
 interface IVfsable<T> {
@@ -71,6 +71,6 @@ interface IVfsable<T> {
 
 ```
 
-# LICENSE
+# license
 
 MIT
