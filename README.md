@@ -11,6 +11,8 @@ https://ricbet.github.io/vfs-frontend/
 
 # how to use
 
+> yarn add vfs-frontend
+
 ```typescript
 const vfsService = new ZipVFSService();
 
