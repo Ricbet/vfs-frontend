@@ -8,6 +8,9 @@ vfs-frontend 是一个纯前端实现的简易虚拟文件系统，只需传递�
 
 https://ricbet.github.io/vfs-frontend/
 
+# 安装
+
+> yarn add vfs-frontend
 
 # 如何使用
 
