@@ -9,9 +9,11 @@ English | [简体中文](README-zh_CN.md)
 https://ricbet.github.io/vfs-frontend/
 
 
-# how to use
+# install
 
 > yarn add vfs-frontend
+
+# how to use
 
 ```typescript
 const vfsService = new ZipVFSService();
