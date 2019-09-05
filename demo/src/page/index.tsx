@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Layout, Typography, Input, Button, Spin } from "antd";
 import UploadForm from "../component/upload-form";
-import { ZipVFSService, Inode } from "../../public/lib";
+import { ZipVFSService, Inode } from "vfs-frontend";
 import TreeComp from "../component/tree";
 
 import "./index.scss";

@@ -1,4 +1,4 @@
-import { Inode } from "../../../public/lib";
+import { Inode } from "vfs-frontend";
 
 export class TInode extends Inode {
 

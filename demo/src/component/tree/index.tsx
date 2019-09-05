@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Tree } from "antd";
 import { TInode } from "./model";
-import { ZipVFSService } from "../../../public/lib";
+import { ZipVFSService } from "vfs-frontend";
 import { generateInode, handleSortFileList, findTreeData } from "./util";
 import "../../file-icons-js.css";
 
